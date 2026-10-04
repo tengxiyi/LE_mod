@@ -1,0 +1,30 @@
+[package]
+name = "lens_core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Pure-computation Rust core for the Last Epoch HybridMod MelonLoader mod (C ABI)."
+license = "MIT"
+publish = false
+
+[lib]
+name = "lens_core"
+# cdylib => lens_core.dll with a plain C ABI, loadable via [DllImport("lens_core")].
+# rlib    => lets `cargo test --lib` link the same code into the test harness.
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["panic-guard"]
+# Wraps every `extern "C"` body in `catch_unwind` so a Rust panic can never unwind
+# into the .NET runtime (which would terminate the game process).
+panic-guard = []
+
+[dependencies]
+# Intentionally empty: the core must stay dependency-free and deterministic.
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = false        # keep the symbol table so export names stay greppable in the DLL
+panic = "unwind"     # unwinding is contained by catch_unwind at the FFI boundary

@@ -1,0 +1,20 @@
+# ===== 构建产物 =====
+HybridMod/RustCore/target/
+HybridMod/CSharpMod/bin/
+HybridMod/CSharpMod/harness/
+HybridMod/ProphecySpamGuard/bin/
+*.log
+
+# ===== 大型二进制 / 分发包 =====
+out/
+LEns_mod_*/
+分发包/
+HybridMod/tools/refpack/
+
+# ===== 第三方反编译资料（版权考虑，不入库）=====
+LEnsAnalysis/
+
+# ===== 旧实验目录 =====
+test_coremodule/
+test_fullset/
+__pycache__/
