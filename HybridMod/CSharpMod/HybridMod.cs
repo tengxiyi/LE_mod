@@ -38,7 +38,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using HybridMod.Interop;
 
-[assembly: MelonInfo(typeof(HybridMod.HybridMod), "HybridMod", "0.5.9", "local")]
+[assembly: MelonInfo(typeof(HybridMod.HybridMod), "HybridMod", "0.5.12", "local")]
 [assembly: MelonGame("Eleventh Hour Games", "Last Epoch")]
 
 namespace HybridMod
@@ -128,6 +128,8 @@ namespace HybridMod
             // ---- 8. ground-label restyle (always on; F6 is the enhancement master switch) ----
             InstallGroundLabelRestyle();
 
+            // ---- 8c. view distance (persisted in MelonLoader\HybridModSettings.txt) ------
+            ViewDistance.LoadSettings();
             // ---- 8b. tooltip tier display (item info interface) --------------------------
             // Prepends "[T<n>]" to every affix line in the item tooltip, using the game's own
             // DisplayTier. Takes over the role of LEns's tooltip module, whose hook no longer
@@ -257,6 +259,7 @@ namespace HybridMod
             _restyle?.OnUpdate();
             _overlay?.OnUpdate(UnityEngine.Time.realtimeSinceStartup);
             _keyPolicy?.OnUpdate(UnityEngine.Time.realtimeSinceStartup);
+            ViewDistance.OnUpdate(UnityEngine.Time.realtimeSinceStartup);
 
             if (_dps == null || !_dps.IsValid) return;
 

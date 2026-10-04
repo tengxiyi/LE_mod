@@ -69,6 +69,10 @@ $modRefs = $refArgs + @(
     "-r:$(Join-Path $gameDir 'MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll')"
     # TextAnchor (label alignment) is declared in the text rendering module.
     "-r:$(Join-Path $gameDir 'MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll')"
+    # Ground-label row cloning needs the game's own settings/UI interop types.
+    "-r:$(Join-Path $gameDir 'MelonLoader\Il2CppAssemblies\Il2CppLE.dll')"
+    "-r:$(Join-Path $gameDir 'MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll')"
+    "-r:$(Join-Path $gameDir 'MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll')"
 )
 
 # Shared by the mod and the harness: no MelonLoader/Unity dependency, so both can compile it.
@@ -94,6 +98,7 @@ $modOnlySrc = @(
     (Join-Path $srcDir 'DpsOverlay.cs')
     (Join-Path $srcDir 'GroundLabelRestyle.cs')
     (Join-Path $srcDir 'TooltipTier.cs')
+    (Join-Path $srcDir "ViewDistance.cs")
     (Join-Path $srcDir 'LensPanelPolicy.cs')
 )
 
